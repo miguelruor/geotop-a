@@ -13,9 +13,15 @@ const workStyle = {
     textAlign: "center"
   },
   description: {
-    color: "#999",
+    color: "black",
+    textAlign: "left",
+    //marginLeft: "10px",
+  },
+  nextTalks:{
+    color: "black",
     textAlign: "left",
     marginLeft: "10px",
+    margin: "12px"
   },
   textCenter: {
     textAlign: "center"

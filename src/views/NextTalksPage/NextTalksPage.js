@@ -47,14 +47,11 @@ export default function NextTalksPage(props) {
         }}
         {...rest}
       />
-      <Parallax filter image={backgroundImageHome}>
+      <Parallax small filter image={backgroundImageHome}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
               <h1 className={classes.title}>Next talks</h1>
-              <h4>
-                Find the information of the next talks.
-              </h4>
               <br />
             </GridItem>
           </GridContainer>

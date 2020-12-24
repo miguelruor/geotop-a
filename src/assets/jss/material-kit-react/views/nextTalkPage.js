@@ -35,7 +35,8 @@ const NextTalkPageStyle = {
     marginTop: "30px",
     minHeight: "40px", //32px
     color: "#FFFFFF",
-    textDecoration: "none"
+    textDecoration: "none",
+    fontSize: "50px"
   },
   subtitle: {
     fontSize: "1.313rem",

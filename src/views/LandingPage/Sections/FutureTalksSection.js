@@ -76,22 +76,22 @@ export default function FutureTalks(){
             <h1 className={classes.title}>SPRING 2021 TALKS</h1>
             <div styles={{justifyContent: 'center'}}>
                 <GridContainer>
-                    <GridItem xs={12} sm={12} md={2}>
-                        <Button type="button" color="info" disabled>Date</Button>
+                    <GridItem xs={3} sm={3} md={2}>
+                        <Button type="button" color="primary" disabled>Date</Button>
                     </GridItem>
-                    <GridItem xs={12} sm={12} md={10}>
-                        <Button type="button" color="info" disabled>Speaker</Button>
+                    <GridItem xs={9} sm={9} md={10}>
+                        <Button type="button" color="primary" disabled>Speaker</Button>
                     </GridItem>
                     {talks.map(talk => (
                         <>
-                        <GridItem xs={12} sm={12} md={2}>
-                            <p className={classes.description}>{talk.date}</p>
+                        <GridItem xs={3} sm={3} md={2}>
+                            <p className={classes.nextTalks}>{talk.date}</p>
                         </GridItem>
-                        <GridItem xs={12} sm={12} md={2}>
-                            <p className={classes.description}>{talk.speaker}</p>
+                        <GridItem xs={3} sm={3} md={2}>
+                            <p className={classes.nextTalks}>{talk.speaker}</p>
                         </GridItem>
-                        <GridItem xs={12} sm={12} md={8}>
-                            <p className={classes.description}>{talk.tittle}</p>
+                        <GridItem xs={6} sm={6} md={8}>
+                            <p className={classes.nextTalks}>{talk.tittle}</p>
                         </GridItem>
                         </>
                     ))}

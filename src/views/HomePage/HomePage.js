@@ -24,7 +24,7 @@ import Close from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import Slide from "@material-ui/core/Slide";
 
-import styles from "../../assets/jss/material-kit-react/views/landingPage.js";
+import styles from "./HomePageStyle.js";
 //import styles from "./HomePageStyle.js";
 
 // Sections for this page
@@ -116,11 +116,11 @@ export default function HomePage(props) {
             <GridItem xs={12} sm={12} md={6}>
               <h1 className={classes.title}>Seminar GEOTOP-A</h1>
               <h4>
-                A series of talks on current topics of interest in applications of Geometry and Topology.
+                Web-seminar series on Applications of Geometry and Topology
               </h4>
               <br />
               <Button
-                color="danger"
+                color= "primary"
                 size="lg"
                 //href="https://www.youtube.com/watch?v=lpgcG4ZdmNc&feature=emb_logo"
                 target="_blank"
@@ -192,9 +192,9 @@ export default function HomePage(props) {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <SectionCarousel />
         <div className={classes.container}>
-          <TeamSection />
           <FutureTalksSection />
           <StreamingTimeSection />
+          <TeamSection />
         </div>
       </div>
       
