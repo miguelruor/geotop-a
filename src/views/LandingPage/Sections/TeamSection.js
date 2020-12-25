@@ -34,7 +34,7 @@ export default function TeamSection() {
   return (
     <div className={classes.section}>
       <h1 className={classes.title}>Scientific Committee</h1>
-      <div>
+      <div className={classes.team}>
         <GridContainer justify='center'>
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
@@ -44,14 +44,14 @@ export default function TeamSection() {
               <h4 className={classes.cardTitle}>
                 José-Carlos Gómez-Larrañaga
                 <br />
-                <small className={classes.smallTitle}>CIMAT Mexico</small>
+                <small className={classes.smallTitle}>CIMAT, Mexico</small>
               </h4>
-              <CardBody>
+              {/*<CardBody>
                 <p className={classes.description}>
                   You can write here details about one of your team members. You
                   can give more details about what they do.
                 </p>
-              </CardBody>
+              </CardBody>*/}
             </Card>
           </GridItem>
           <GridItem xs={12} sm={12} md={4}>
@@ -60,34 +60,34 @@ export default function TeamSection() {
                 <img src={team2} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
-                Renzo L. Ricca
+                Kathryn Hess
                 <br />
-                <small className={classes.smallTitle}>University of Milano-Bicocca, Italy</small>
+                <small className={classes.smallTitle}>École Polytechnique Fédérale de Lausanne, Switzerland</small>
               </h4>
-              <CardBody>
+              {/*<CardBody>
                 <p className={classes.description}>
                   You can write here details about one of your team members. You
-                  can give more details about what they do. 
+                  can give more details about what they do.
                 </p>
-              </CardBody>
+              </CardBody>*/}
             </Card>
           </GridItem>
           <GridItem xs={12} sm={12} md={4}>
             <Card plain>
               <GridItem xs={12} sm={12} md={6} className={classes.itemGrid}>
                 <img src={team3} alt="..." className={imageClasses} />
-              </GridItem>
+              </GridItem> 
               <h4 className={classes.cardTitle}>
-                De Witt L. Sumners
+                Neza Mramor-Kosta
                 <br />
-                <small className={classes.smallTitle}>Florida State University, USA</small>
+                <small className={classes.smallTitle}>University of Ljubljana, Slovenia</small>
               </h4>
-              <CardBody>
+              {/*<CardBody>
                 <p className={classes.description}>
                   You can write here details about one of your team members. You
-                  can give more details about what they do. 
+                  can give more details about what they do.
                 </p>
-              </CardBody>
+              </CardBody>*/}
             </Card>
           </GridItem>
           <GridItem xs={12} sm={12} md={6}>
@@ -96,16 +96,16 @@ export default function TeamSection() {
                 <img src={team4} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
-                Kathryn Hess
+                Renzo L. Ricca
                 <br />
-                <small className={classes.smallTitle}>École Polytechnique Fédérale de Lausanne, Switzerland</small>
+                <small className={classes.smallTitle}>University of Milano-Bicocca, Italy</small>
               </h4>
-              <CardBody>
+              {/*<CardBody>
                 <p className={classes.description}>
                   You can write here details about one of your team members. You
                   can give more details about what they do.
                 </p>
-              </CardBody>
+              </CardBody>*/}
             </Card>
           </GridItem>
           <GridItem xs={12} sm={12} md={6}>
@@ -114,16 +114,16 @@ export default function TeamSection() {
                 <img src={team5} alt="..." className={imageClasses} />
               </GridItem>
               <h4 className={classes.cardTitle}>
-                Neza Mramor-Kosta
+                De Witt L. Sumners
                 <br />
-                <small className={classes.smallTitle}>University of Ljubljana, Slovenia</small>
+                <small className={classes.smallTitle}>Florida State University, USA</small>
               </h4>
-              <CardBody>
+              {/*<CardBody>
                 <p className={classes.description}>
                   You can write here details about one of your team members. You
-                  can give more details about what they do. 
+                  can give more details about what they do.
                 </p>
-              </CardBody>
+              </CardBody>*/}
             </Card>
           </GridItem>
         </GridContainer>

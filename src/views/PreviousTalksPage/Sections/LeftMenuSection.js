@@ -27,9 +27,6 @@ export default function LeftMenuSection(props){
                     tabButton: "FALL 2020",
                 },
                 {
-                    tabButton: "SUMMER 2020",
-                },
-                {
                     tabButton: "SPRING 2020",
                 },
                 {

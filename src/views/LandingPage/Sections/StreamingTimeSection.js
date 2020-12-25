@@ -30,82 +30,82 @@ export default function StreamingTime(){
     const size = 50; // Clock's size
 
     return(
-        <GridContainer style={{paddingBottom: 100}} justify = "left">
+        <GridContainer style={{paddingLeft: 150, paddingRight:150}} justify = "left">
             <GridItem>
                 <h1 className={classes.title}>Streaming time</h1>
             </GridItem>
 
-            <GridItem  xs={3} sm={3} md={3} >
+            <GridItem  xs={6} sm={3} md={3}>
                 <GridContainer justify = "left" alignItems="center">
-                    <GridItem xs={6} sm={6} md={6}>
+                    <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Los Angeles</p>
                         <p className={classes.description}>8 am</p>
                     </GridItem>
-                    <GridItem xs={6} sm={6} md={6}><span><Clock value={date1} size={size} /></span></GridItem>
+                    <GridItem xs={2} sm={2} md={2}><span><Clock value={date1} size={size} /></span></GridItem>
                 </GridContainer>
             </GridItem>
-            <GridItem  xs={3} sm={3} md={3}>
-                <GridContainer justify = "center" alignItems="center">
-                    <GridItem xs={6} sm={6} md={6}>
+            <GridItem  xs={6} sm={3} md={3}>
+                <GridContainer justify = "left" alignItems="center">
+                    <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Mexico City</p>
                         <p className={classes.description}>10 am</p>
                     </GridItem>
-                    <GridItem xs={6} sm={6} md={6}><span><Clock value={date2} size={size} /></span></GridItem>
+                    <GridItem xs={2} sm={2} md={2}><span><Clock value={date2} size={size} /></span></GridItem>
                 </GridContainer>
             </GridItem>
-            <GridItem  xs={3} sm={3} md={3}>
-                <GridContainer justify = "center" alignItems="center">
-                    <GridItem xs={6} sm={6} md={6}>
+            <GridItem  xs={6} sm={3} md={3}>
+                <GridContainer justify = "left" alignItems="center">
+                    <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>New York</p>
                         <p className={classes.description}>11 am</p>
                     </GridItem>
-                    <GridItem xs={6} sm={6} md={6}><span><Clock value={date3} size={size}/></span></GridItem>
+                    <GridItem xs={2} sm={2} md={2}><span><Clock value={date3} size={size}/></span></GridItem>
                 </GridContainer>
             </GridItem>
-            <GridItem  xs={3} sm={3} md={3}>
-                <GridContainer justify = "center" alignItems="center">
-                    <GridItem xs={6} sm={6} md={6}>
+            <GridItem  xs={6} sm={3} md={3}>
+                <GridContainer justify = "left" alignItems="center">
+                    <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>London</p>
                         <p className={classes.description}>4 pm</p>
                     </GridItem>
-                    <GridItem xs={6} sm={6} md={6}><span><Clock value={date4} size={size}/></span></GridItem>
+                    <GridItem xs={2} sm={2} md={2}><span><Clock value={date4} size={size}/></span></GridItem>
                 </GridContainer>
             </GridItem>
 
-            <GridItem  xs={3} sm={3} md={3}>
+            <GridItem  xs={6} sm={3} md={3}>
                 <GridContainer justify = "left" alignItems="center">
-                    <GridItem xs={6} sm={6} md={6}>
+                    <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Paris</p>
                         <p className={classes.description}>5 pm</p> 
                     </GridItem>
-                    <GridItem xs={6} sm={6} md={6}><span><Clock value={date5} size={size} /></span></GridItem>
+                    <GridItem xs={2} sm={2} md={2}><span><Clock value={date5} size={size} /></span></GridItem>
                 </GridContainer>
             </GridItem>
-            <GridItem  xs={3} sm={3} md={3}>
-                <GridContainer justify = "center" alignItems="center">
-                    <GridItem xs={6} sm={6} md={6}>
+            <GridItem  xs={6} sm={3} md={3}>
+                <GridContainer justify = "left" alignItems="center">
+                    <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Moscow</p>
                         <p className={classes.description}>7 pm</p>
                     </GridItem>
-                    <GridItem xs={6} sm={6} md={6}><span><Clock value={date6} size={size} /></span></GridItem>
+                    <GridItem xs={2} sm={2} md={2}><span><Clock value={date6} size={size} /></span></GridItem>
                 </GridContainer>
             </GridItem>
-            <GridItem  xs={3} sm={3} md={3}>
-                <GridContainer justify = "center" alignItems="center">
-                    <GridItem xs={6} sm={6} md={6}>
-                        <p className={classes.description}>Beijin</p>
+            <GridItem  xs={6} sm={3} md={3}>
+                <GridContainer justify = "left" alignItems="center">
+                    <GridItem xs={8} sm={8} md={8}>
+                        <p className={classes.description}>Beijing</p>
                         <p className={classes.description}>12 am</p>
                     </GridItem>
-                    <GridItem xs={6} sm={6} md={6}><span><Clock value={date7} size={size}/></span></GridItem>
+                    <GridItem xs={2} sm={2} md={2}><span><Clock value={date7} size={size}/></span></GridItem>
                 </GridContainer>
             </GridItem>
-            <GridItem  xs={3} sm={3} md={3}>
-                <GridContainer justify = "center" alignItems="center">
-                    <GridItem xs={6} sm={6} md={6}>
+            <GridItem  xs={6} sm={3} md={3}>
+                <GridContainer justify = "left" alignItems="center">
+                    <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Tokyo</p>
                         <p className={classes.description}>1 am + 1</p>
                     </GridItem>
-                    <GridItem xs={6} sm={6} md={6}><span><Clock value={date8} size={size}/></span></GridItem>
+                    <GridItem xs={2} sm={2} md={2}><span><Clock value={date8} size={size}/></span></GridItem>
                 </GridContainer>
             </GridItem>
         </GridContainer>

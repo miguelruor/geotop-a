@@ -14,7 +14,7 @@ const landingPageStyle = {
     minHeight: "40px", //32px
     color: "#FFFFFF",
     textDecoration: "none",
-    fontSize: "30"
+    fontSize: "50px"
   },
   subtitle: {
     fontSize: "1.313rem",

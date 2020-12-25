@@ -142,9 +142,9 @@ export default function NavPills(props) {
                         <img src={speakerImages[talk['speakerID']].default} alt="..." className={imageClasses} />
                       </GridItem>
                       <h4 className={classes.cardTitle}>
-                        {talk['title']}
+                        {talk['speaker']}
                         <br />
-                    <small className={classes.smallTitle}>{talk['speaker']}</small>
+                    <small className={classes.smallTitle}>{talk['title']}</small>
                       </h4>
                       <Button 
                         round 
@@ -194,19 +194,13 @@ export default function NavPills(props) {
                           id="classic-modal-slide-description"
                           className={classes.modalBody}
                         >
-                          <p>
-                            <b>Speaker: </b> {talkSpeaker}
-                            <br/>
-                            <b>Title: </b>{talkTitle}
-                            <br/>
-                            <b>Date: </b>{talkDate}
-                            <br/>
-                            <b>Keywords: </b> {talkKeywords.join(', ')}
-                            <br/>
-                            <b>Abstract: </b>{talkDescription}
-                            <br/>
-                            <b>Video: </b> {talkVideo === null ? 'Not available yet.' : <a href={talkVideo}>Click here</a>}
-                          </p>
+                          <p><b>Speaker: </b> {talkSpeaker} </p>
+                          <p><b>Title: </b>{talkTitle} </p>
+                          <p><b>Video: </b> {talkVideo === null ? 'Not available yet.' : <a href={talkVideo}>Click here</a>} </p>
+                          <p><b>Date: </b>{talkDate} </p>
+                          <p><b>Keywords: </b> {talkKeywords.join(', ')}</p>
+                          <p><b>Abstract: </b>{talkDescription}</p>
+                            
                         </DialogContent>
                         <DialogActions className={classes.modalFooter}>
                           <Button

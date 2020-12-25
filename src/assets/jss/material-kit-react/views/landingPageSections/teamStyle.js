@@ -4,7 +4,7 @@ import imagesStyle from "../../imagesStyles.js";
 
 const teamStyle = {
   section: {
-    padding: "70px 0",
+    //padding: "70px 0",
     textAlign: "center"
   },
   title: {
@@ -21,7 +21,7 @@ const teamStyle = {
   },
   cardTitle,
   smallTitle: {
-    color: "#6c757d"
+    color: "black"
   },
   description: {
     color: "#999"
@@ -49,6 +49,19 @@ const teamStyle = {
       paddingTop: '60px',
     //padding: '10%',
     //border: 0,
+  },
+  team: {
+    paddingLeft: '150px',
+    paddingRight: '150px'
+  },
+  searchBy:{
+    ...title,
+    marginBottom: "1rem",
+    marginTop: "30px",
+    minHeight: "32px",
+    textDecoration: "none",
+    fontSize: '20px', 
+    fontStyle:'normal'
   }
 };
 

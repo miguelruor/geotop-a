@@ -142,14 +142,11 @@ export default function PreviousTalksPage(){
                 }}
                 //{...rest}
             />
-            <Parallax filter image={backgroundImageHome}>
+            <Parallax filter small image={backgroundImageHome}>
                 <div className={classes.container}>
                     <GridContainer>
                         <GridItem xs={12} sm={12} md={6}>
                             <h1 className={classes.title}>Previous talks</h1>
-                            <h4>
-                                Find our previous talks.
-                            </h4>
                             <br />
                         </GridItem>
                     </GridContainer>

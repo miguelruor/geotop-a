@@ -102,7 +102,7 @@ export default function ListSpeakersSection(){
         speakersList
         .forEach(speaker => {
             const letter = removeAccents(speaker.surname.charAt(0));
-            console.log(letter);
+            //console.log(letter);
             letterSet.add(letter);
             visitLetters[letter] = false;
             speakersWithLetter[letter] = [];
@@ -110,7 +110,7 @@ export default function ListSpeakersSection(){
         speakersList
         .forEach(speaker => {
             const letter = removeAccents(speaker.surname.charAt(0));
-            console.log(letter);
+            //console.log(letter);
             speakersWithLetter[letter].push(speaker);
         });
         setLettersInSurname([...letterSet]);
@@ -119,28 +119,28 @@ export default function ListSpeakersSection(){
     }  
 
     function listWithLetter(letter){
-    
-        const listItems = speakersListByLetter[letter].map(speaker =>
-            <li> 
-            <h5 className={classes.title} style={{fontSize: '20px', fontStyle:'normal'}}> 
-                {speaker.surname} {speaker.name} {speaker.middle_initial}
-                <br/>
+        var firstSpeaker = true;
+        const listItems = speakersListByLetter[letter].map(speaker => {
+            var firstTalk = true;
+            return(
+                <>
+                {firstSpeaker ? firstSpeaker = false : ', '} {speaker.surname} {speaker.name} {speaker.middle_initial} {" ("}
                 {speaker.talks.map(function(talkID) {
-                  let first = true;
                   return (
                       <>
-                        {first ? first=false : ',' } <a href={talks[talkID].video} target="_blank">{talks[talkID].season}</a>
+                        {firstTalk ? firstTalk=false : ', ' }<a href={talks[talkID].video} target="_blank">{talks[talkID].season}</a>
                       </>
                   );  
                 })}
-            </h5>
-            </li>
+                {")"}
+                </>
+            );
+        }
+        
         );
         
         return (
-            <ul style={{listStyleType:'none'}}>
-                {listItems}
-            </ul>
+            <p className={classes.title} style={{fontSize: '20px', fontStyle:'normal'}}>{listItems}</p>
         );
     }
 
