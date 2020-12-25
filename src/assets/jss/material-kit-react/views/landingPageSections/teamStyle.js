@@ -53,6 +53,15 @@ const teamStyle = {
   team: {
     paddingLeft: '150px',
     paddingRight: '150px'
+  },
+  searchBy:{
+    ...title,
+    marginBottom: "1rem",
+    marginTop: "30px",
+    minHeight: "32px",
+    textDecoration: "none",
+    fontSize: '20px', 
+    fontStyle:'normal'
   }
 };
 
