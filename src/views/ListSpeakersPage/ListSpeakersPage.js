@@ -46,21 +46,18 @@ export default function ListSpeakersPage(){
                 }}
                 //{...rest}
             />
-            <Parallax filter image={backgroundImageHome}>
+            <Parallax small filter image={backgroundImageHome}>
                 <div className={classes.container}>
                     <GridContainer>
                         <GridItem xs={12} sm={12} md={6}>
                             <h1 className={classes.title}>List of speakers</h1>
-                            <h4>
-                                Find all speakers in alphabetical order
-                            </h4>
                             <br />
                         </GridItem>
                     </GridContainer>
                 </div>
             </Parallax>
             <div className={classNames(classes.main, classes.mainRaised)}>
-                <div className={classes.container}>
+                <div className={classes.container} style={{paddingTop:"10px", paddingBottom:"10px"}}>
                     <ListSpeakersSection />
                 </div>
             </div>
