@@ -50,7 +50,7 @@ export default function HomePage(props) {
             <GridItem xs={12} sm={12} md={6}>
               <h1 className={classes.title}>Subscribe to our seminar!</h1>
               <h4>
-                Get regularly updated of upcoming web-seminars.
+                Get regularly updated of upcoming web-seminars
               </h4>
               <br />
             </GridItem>

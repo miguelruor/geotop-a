@@ -78,7 +78,7 @@ export default function ListSpeakersSection(){
                 alert("Cannot load speakers");
             });
         speakers.sort(function(a,b){
-            if(a.surname > b.surname){
+            if(removeAccents(a.surname) > removeAccents(b.surname)){
                 return 1;
             }
             if(a.surname < b.surname){
@@ -119,12 +119,11 @@ export default function ListSpeakersSection(){
     }  
 
     function listWithLetter(letter){
-        var firstSpeaker = true;
         const listItems = speakersListByLetter[letter].map(speaker => {
             var firstTalk = true;
             return(
-                <>
-                {firstSpeaker ? firstSpeaker = false : ', '} {speaker.surname} {speaker.name} {speaker.middle_initial} {" ("}
+                <li style={{listStyleType:'square'}}>
+                <h5 style={{fontSize: '20px', fontStyle:'normal'}}>{speaker.surname} {speaker.name} {speaker.middle_initial} <br/>
                 {speaker.talks.map(function(talkID) {
                   return (
                       <>
@@ -132,15 +131,15 @@ export default function ListSpeakersSection(){
                       </>
                   );  
                 })}
-                {")"}
-                </>
+                </h5>
+                </li>
             );
         }
         
         );
         
         return (
-            <p className={classes.title} style={{fontSize: '20px', fontStyle:'normal'}}>{listItems}</p>
+            <ul style={{textAlign: 'left'}}>{listItems}</ul>
         );
     }
 

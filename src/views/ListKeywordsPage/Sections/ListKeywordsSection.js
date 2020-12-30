@@ -13,6 +13,8 @@ import GridItem from "../../../components/Grid/GridItem.js";
 import styles from "../../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
 import MenuOpen from '@material-ui/icons/MenuOpen';
 
+import removeAccents from "remove-accents"
+
 import {db} from '../../../ConfigFirebase';
 
 const useStyles = makeStyles(styles);
@@ -89,15 +91,26 @@ export default function     ListSpeakersSection(){
         }
         var auxLetterSet = [...letterSet];
         auxLetterSet.sort();
+
         setLettersInKeywords(auxLetterSet);
         setVisitLetters(visitLetters);
         setKeywordsListByLatter(keywordsWithLetter); 
     }  
 
     function listWithLetter(letter){
-    
-        const listItems = keywordsListByLetter[letter].map(keyword =>
-            <li> 
+        var orderedKeywords = keywordsListByLetter[letter];
+        orderedKeywords.sort(function(a,b){
+            if(removeAccents((Object.keys(a))[0]).toLowerCase() > removeAccents((Object.keys(b))[0]).toLowerCase()){
+                return 1;
+            }
+            if(removeAccents((Object.keys(a))[0]).toLowerCase() < removeAccents((Object.keys(b))[0]).toLowerCase()){
+                return -1;
+            }
+            return 0;
+        });
+        const listItems = orderedKeywords.map(keyword =>{
+            return(
+            <li style={{listStyleType:'square'}}> 
             <h5 style={{fontSize: '20px', fontStyle:'normal'}}> 
                 {Object.keys(keyword).map(function(k) {
                     let result = '';
@@ -114,7 +127,8 @@ export default function     ListSpeakersSection(){
                     )})}
             </h5>
             </li>
-        );
+            );
+        });
         
         return (
             <ul style={{listStyleType:'none'}}>
