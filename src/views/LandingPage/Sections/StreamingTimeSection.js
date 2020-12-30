@@ -30,12 +30,13 @@ export default function StreamingTime(){
     const size = 50; // Clock's size
 
     return(
-        <GridContainer style={{paddingLeft: 150, paddingRight:150}} justify = "left">
+        <GridContainer style={{paddingLeft: "10%", paddingRight:"10%"}} justify = "left">
             <GridItem>
                 <h1 className={classes.title}>Streaming time</h1>
             </GridItem>
 
             <GridItem  xs={6} sm={3} md={3}>
+                
                 <GridContainer justify = "left" alignItems="center">
                     <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Los Angeles</p>
@@ -43,8 +44,10 @@ export default function StreamingTime(){
                     </GridItem>
                     <GridItem xs={2} sm={2} md={2}><span><Clock value={date1} size={size} /></span></GridItem>
                 </GridContainer>
+               
             </GridItem>
             <GridItem  xs={6} sm={3} md={3}>
+                
                 <GridContainer justify = "left" alignItems="center">
                     <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Mexico City</p>
@@ -52,8 +55,10 @@ export default function StreamingTime(){
                     </GridItem>
                     <GridItem xs={2} sm={2} md={2}><span><Clock value={date2} size={size} /></span></GridItem>
                 </GridContainer>
+                
             </GridItem>
             <GridItem  xs={6} sm={3} md={3}>
+                
                 <GridContainer justify = "left" alignItems="center">
                     <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>New York</p>
@@ -61,8 +66,10 @@ export default function StreamingTime(){
                     </GridItem>
                     <GridItem xs={2} sm={2} md={2}><span><Clock value={date3} size={size}/></span></GridItem>
                 </GridContainer>
+                
             </GridItem>
             <GridItem  xs={6} sm={3} md={3}>
+                
                 <GridContainer justify = "left" alignItems="center">
                     <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>London</p>
@@ -70,9 +77,11 @@ export default function StreamingTime(){
                     </GridItem>
                     <GridItem xs={2} sm={2} md={2}><span><Clock value={date4} size={size}/></span></GridItem>
                 </GridContainer>
+                
             </GridItem>
 
             <GridItem  xs={6} sm={3} md={3}>
+                
                 <GridContainer justify = "left" alignItems="center">
                     <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Paris</p>
@@ -80,8 +89,10 @@ export default function StreamingTime(){
                     </GridItem>
                     <GridItem xs={2} sm={2} md={2}><span><Clock value={date5} size={size} /></span></GridItem>
                 </GridContainer>
+               
             </GridItem>
             <GridItem  xs={6} sm={3} md={3}>
+                
                 <GridContainer justify = "left" alignItems="center">
                     <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Moscow</p>
@@ -89,8 +100,10 @@ export default function StreamingTime(){
                     </GridItem>
                     <GridItem xs={2} sm={2} md={2}><span><Clock value={date6} size={size} /></span></GridItem>
                 </GridContainer>
+                
             </GridItem>
             <GridItem  xs={6} sm={3} md={3}>
+                
                 <GridContainer justify = "left" alignItems="center">
                     <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Beijing</p>
@@ -98,8 +111,10 @@ export default function StreamingTime(){
                     </GridItem>
                     <GridItem xs={2} sm={2} md={2}><span><Clock value={date7} size={size}/></span></GridItem>
                 </GridContainer>
+                
             </GridItem>
             <GridItem  xs={6} sm={3} md={3}>
+               
                 <GridContainer justify = "left" alignItems="center">
                     <GridItem xs={8} sm={8} md={8}>
                         <p className={classes.description}>Tokyo</p>
@@ -107,6 +122,7 @@ export default function StreamingTime(){
                     </GridItem>
                     <GridItem xs={2} sm={2} md={2}><span><Clock value={date8} size={size}/></span></GridItem>
                 </GridContainer>
+             
             </GridItem>
         </GridContainer>
     );

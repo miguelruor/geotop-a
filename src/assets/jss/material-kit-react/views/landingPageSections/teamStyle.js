@@ -45,14 +45,14 @@ const teamStyle = {
   },
   nextTalk: {
     //backgroundColor: 'black',
-      paddingLeft: '70px',
-      paddingTop: '60px',
-    //padding: '10%',
+    //  paddingLeft: '10%',
+    // paddingTop: '10%',
+    padding: '5%',
     //border: 0,
   },
   team: {
-    paddingLeft: '150px',
-    paddingRight: '150px'
+    paddingLeft: '10%',
+    paddingRight: '10%'
   },
   searchBy:{
     ...title,

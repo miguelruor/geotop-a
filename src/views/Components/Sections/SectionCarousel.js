@@ -50,9 +50,10 @@ export default function SectionCarousel() {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 2,
+    slidesToScroll: 1,
     autoplay: true,
-    variableWidth: true
+    variableWidth: true,
+    adaptiveHeight: true
   };
 
   // Funcion para leer todos los archivos de una carpeta (npm install --save-dev webpack@4.44.2 webpack-cli)
