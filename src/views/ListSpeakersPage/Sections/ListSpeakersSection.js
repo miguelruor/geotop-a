@@ -31,7 +31,6 @@ export default function ListSpeakersSection(){
     const [visitLetters, setVisitLetters] = useState({});
     const [talks,setTalks] = useState({});
 
-
     useEffect(async () => {
         var talks = {};
         await db.collection("talks")

@@ -53,8 +53,7 @@ export default function NextTalksSection(){
             <GridItem xs={12} sm={12} md={5} className={classes.nextTalk}>
               <img src={image1} className={imageClasses}/>
             </GridItem>
-            <GridItem xs={12} sm={12} md={1}/>
-            <GridItem xs={12} sm={12} md={6}>
+            <GridItem xs={12} sm={12} md={7}>
                 <GridContainer>
                     {talks.map(talk => (
                         <>
