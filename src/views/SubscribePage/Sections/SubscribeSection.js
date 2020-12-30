@@ -59,9 +59,9 @@ export default function SubscribeSection() {
     <div className={classes.section}>
       <GridContainer justify="center">
         <GridItem cs={12} sm={12} md={8}>
-          <h2 className={classes.title}>Subscribe to GEOTOP-A.</h2>
+          <h2 className={classes.title}>Subscribe to GEOTOP-A</h2>
           <h4 className={classes.description}>
-            Send us your details to receive automatic reminders of upcoming seminars.
+            Send us your details to receive automatic reminders of upcoming seminars
           </h4>
           <form onSubmit={handleSumbit}>
             <GridContainer>
