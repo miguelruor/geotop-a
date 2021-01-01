@@ -47,17 +47,19 @@ export default function     ListSpeakersSection(){
         await db.collection("talks").get()
         .then(function(querySnapshot){
             querySnapshot.forEach(async function(doc){
-                let keys = doc.data().keywords;
-                let keys_len = keys.length;
-                for(let i=0; i<keys_len; i++){
-                    // Checo si encuentro una keyword nueva
-                    if(!(keys[i] in keywords_aux)){
-                        keywords_aux[keys[i]] = []
+                if(doc.data().video != null){
+                    let keys = doc.data().keywords;
+                    let keys_len = keys.length;
+                    for(let i=0; i<keys_len; i++){
+                        // Checo si encuentro una keyword nueva
+                        if(!(keys[i] in keywords_aux)){
+                            keywords_aux[keys[i]] = []
+                        }
+                        var idx = doc.data().speaker;
+                        keywords_aux[keys[i]].push(
+                            [doc.id, speakers[idx], doc.data().date.toDate().getFullYear(), doc.data().video]
+                        );   
                     }
-                    var idx = doc.data().speaker;
-                    keywords_aux[keys[i]].push(
-                        [doc.id, speakers[idx], doc.data().date.toDate().getFullYear(), doc.data().video]
-                    );   
                 }
             });
         })

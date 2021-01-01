@@ -55,12 +55,13 @@ export default function ListSpeakersSection(){
                         middle_initial: doc.data().middle_initial,
                         talks: doc.data().talks,
                         years: [],
+                        inList: false
                     });
                     
-                    let speakers_len = speakers.length
-                    let talks_len = speakers[speakers_len-1].talks.length
+                    var speakers_len = speakers.length
+                    var talks_len = speakers[speakers_len-1].talks.length
 
-                    for(let i=0; i<talks_len; i++){
+                    /*for(var i=0; i<talks_len; i++){
                         db.collection("talks").doc(speakers[speakers_len-1].talks[i].toString())
                         .get()
                         .then(function(doc){
@@ -70,7 +71,21 @@ export default function ListSpeakersSection(){
                         .catch(function(error){
                             alert("Cannot load some talk");
                         });
+                    }*/
+                    if(talks[speakers[speakers_len-1].talks[0].toString()].video != null){
+                        speakers[speakers_len-1].inList = true;
                     }
+
+                    for(var i=0; i<talks_len; i++){
+                        var talkDate = talks[speakers[speakers_len-1].talks[i].toString()].date.toDate();
+
+                        /*if(talkDate > new Date()){
+                            break;
+                        }*/
+
+                        speakers[speakers_len-1].years.push(talkDate.getFullYear());
+                    }
+
                 }); // Se acaba el forEach
             })
             .catch(function(error) {
@@ -100,6 +115,10 @@ export default function ListSpeakersSection(){
         let speakersWithLetter = {};
         speakersList
         .forEach(speaker => {
+            if(!speaker.inList){
+                return;
+            }
+
             const letter = removeAccents(speaker.surname.charAt(0));
             //console.log(letter);
             letterSet.add(letter);
@@ -108,6 +127,9 @@ export default function ListSpeakersSection(){
         });
         speakersList
         .forEach(speaker => {
+            if(!speaker.inList){
+                return;
+            }
             const letter = removeAccents(speaker.surname.charAt(0));
             //console.log(letter);
             speakersWithLetter[letter].push(speaker);
@@ -124,11 +146,14 @@ export default function ListSpeakersSection(){
                 <li style={{listStyleType:'square'}}>
                 <h5 style={{fontSize: '20px', fontStyle:'normal'}}>{speaker.surname} {speaker.name} {speaker.middle_initial} <br/>
                 {speaker.talks.map(function(talkID) {
-                  return (
-                      <>
-                        {firstTalk ? firstTalk=false : ', ' }<a href={talks[talkID].video} target="_blank">{talks[talkID].season}</a>
-                      </>
-                  );  
+                    if(talks[talkID].video == null){
+                        return;
+                    }
+                    return (
+                        <>
+                            {firstTalk ? firstTalk=false : ', ' }<a href={talks[talkID].video} target="_blank">{talks[talkID].season}</a>
+                        </>
+                    );  
                 })}
                 </h5>
                 </li>
