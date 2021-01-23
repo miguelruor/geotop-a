@@ -71,6 +71,54 @@ export default function FutureTalks(){
         },
     ]);
 
+    const [talks2,setTalks2] = useState([
+        {
+            date: "August 20",
+            speaker: "Bei Wang",
+            tittle: "University of Utah - USA"
+        },  
+        {
+            date: "September 3",
+            speaker: "Yasu Wang",
+            tittle: "UC San Diego - USA"
+        },
+        {
+            date: "September 17",
+            speaker: "Enzo Orlandini", 
+            tittle: "Physics U. Padova,- USA"
+        },
+        {
+            date: "October 1",
+            speaker: "Lynn Zechiedrich",
+            tittle: "University of Edinburgh - UK"
+        },
+        {
+            date: "October 15",
+            speaker: "Daniel Peralta-Salas",
+            tittle: "ICMAT - Spain"
+        },
+        {
+            date: "October 29",
+            speaker: "Stephen Childress",
+            tittle: "NYU - USA"
+        },
+        {
+            date: "November 12",
+            speaker: "Andrzej Stasiak",
+            tittle: "University of Lausanne - Switzerland"
+        },
+        {
+            date: "November 19",
+            speaker: "Aldo Guzmán-Sáenz",
+            tittle: "IBM Thomas J. Watson Research Center - USA"
+        },
+        {
+            date: "December 10",
+            speaker: "Caroline Uhler",
+            tittle: "ETH Zurich - Switzerland"
+        },
+    ]);
+
     return(
         <div className={classes.section} style={{paddingTop: 20}}>
             <h1 className={classes.title}>SPRING 2021 TALKS</h1>

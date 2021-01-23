@@ -15,28 +15,25 @@ import CardBody from "../../../components/Card/CardBody.js";
 import CardFooter from "../../../components/Card/CardFooter.js";
 
 import styles from "../../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
-import image1 from "../../../assets/img/images/speakers/sp041.png";
+import image1 from "../../../assets/img/images/speakers/sp042.png";
 
 const useStyles = makeStyles(styles);
 
 export default function NextTalksSection(){
-
     
     const [talks, setTalks] = useState([
         {
-            date: "January 22, 2021",
-            speaker: "Sergei Nechaev",
-            title: "Low-dimensional topology and non-Euclidean geometry in nature",
-            keywords: ["Statistical topology", "Low-dimensional topology", "unknotted long polymer chain", 
-            "DNA folding"],
-            abstract: 'In the talk I demonstrate on specific examples the emergence of a new actively '
-            + 'developing field, the "statistical topology", which unifies topology, noncommutative geometry, '
-            + 'probability theory and random walks. In particular, I plan to discuss the following interlinked '
-            + 'questions: (i) statistics of random walks on hyperbolic manifolds and graphs in connection with '
-            + 'the topology and fractal structure of unknotted long polymer chain confined in a bounding box and '
-            + 'hierarchical DNA folding, and (ii) optimal embedding in the three-dimensional space of '
-            + 'exponentially growing tissues, like, for example, the salad leaf, and how the hierarchical '
-            + 'ultrametric geometry emerges in that case.',
+            date: "February 5, 2021",
+            speaker: "Alice Patania",
+            title: "Predicting emergent sequences of neural networks via directional graphs",
+            keywords: ['Neuroscience', 'topological data analysis (TDA)', 'graph signal processing'],
+            abstract: 'Sequences of neural activity arise in many brain areas, including cortex, hippocampus,' 
+            + 'and central pattern generator circuits that underlie rhythmic behaviors like locomotion. A' +
+            'fundamental question is to understand how the network’s connectivity shapes neuronal activity. ' 
+            + 'Surprisingly, there is a correspondence between unstable fixed points and dynamic attractors. '
+            + 'In this talk we will look into different network architectures and the fixed points they produce'
+            + ' by decomposing the networks into “directional” components.' +
+            ' This is joint work with C.Curto, F.Burtscher , S. Ebli, D.Egas, K.Morrison, N.Sanderson  and Y.Zhou.',
             image: "../../../assets/img/images/sp41.jpg",
         },
     ]);
