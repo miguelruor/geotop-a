@@ -2,7 +2,7 @@ import './App.css';
 
 import React from "react";
 import { createBrowserHistory } from "history";
-import { Router, Route, Switch } from "react-router-dom";
+import { HashRouter, Router, Route, Switch } from "react-router-dom";
 
 import HomePage from './views/HomePage/HomePage';
 import NextTalksPage from './views/NextTalksPage/NextTalksPage';
@@ -12,6 +12,18 @@ import ListKeywordsPage from './views/ListKeywordsPage/ListKeywordsPage';
 import ListSpeakersPage from './views/ListSpeakersPage/ListSpeakersPage';
 
 var hist = createBrowserHistory();
+
+/*const express = require('express');
+const path = require('path');
+const app = express();
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
+
+app.listen(9000);*/
 
 export default function App(props) {
   return (
