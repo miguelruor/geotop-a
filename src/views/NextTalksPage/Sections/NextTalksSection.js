@@ -29,7 +29,7 @@ export default function NextTalksSection(){
             keywords: ['Neuroscience', 'topological data analysis (TDA)', 'graph signal processing'],
             abstract: 'Sequences of neural activity arise in many brain areas, including cortex, hippocampus,' 
             + 'and central pattern generator circuits that underlie rhythmic behaviors like locomotion. A' +
-            'fundamental question is to understand how the network’s connectivity shapes neuronal activity. ' 
+            ' fundamental question is to understand how the network’s connectivity shapes neuronal activity. ' 
             + 'Surprisingly, there is a correspondence between unstable fixed points and dynamic attractors. '
             + 'In this talk we will look into different network architectures and the fixed points they produce'
             + ' by decomposing the networks into “directional” components.' +
