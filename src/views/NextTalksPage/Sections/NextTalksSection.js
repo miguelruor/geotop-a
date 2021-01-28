@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import ReactHtmlParser from 'react-html-parser'; 
 
 // @material-ui/icons
 
@@ -45,18 +46,21 @@ export default function NextTalksSection(){
             speaker: "Nina Otter",
             title: "The magnitude of point-cloud data",
             keywords: ["magnitude", "point-cloud data", "stability", "persistent homology"],
-            abstract: "Magnitude is an isometric invariant of metric spaces that was introduced by Tom Leinster "
+            abstract: "<p>Magnitude is an isometric invariant of metric spaces that was introduced by Tom Leinster "
             + "in 2010, and is currently the object of intense research, since it has been shown to encode many "
             + "invariants of a metric space such as volume, dimension, and capacity.\n\n"
-            + ' '
-            + "Magnitude homology is a homology theory for metric spaces that has been introduced by "
+            + '</p>'
+            + "<p>Magnitude homology is a homology theory for metric spaces that has been introduced by "
             + "Hepworth-Willerton and Leinster-Shulman, and categorifies magnitude in a similar way as the singular "
             + "homology of a topological space categorifies its Euler characteristic.\n\n"
-            + " "
-            + "In this talk I will first introduce magnitude and magnitude homology. I will then give an overview of "
+            + "</p>"
+            + "<p>In this talk I will first introduce magnitude and magnitude homology. I will then give an overview of "
             + "existing results and current research in this area, explain how magnitude homology is related to "
             + "persistent homology, and finally discuss new stability results for magnitude and how it can be used to "
-            + "study point-cloud data.",
+            + "study point-cloud data."
+            + "</p>"
+            + "<p>This talk is based on joint work in progress with Miguel O'Malley and Sara Kalisnik, as well as the "
+            + "<a href = https://arxiv.org/abs/1807.01540>preprint</a>.</p>",
             image: "../../../assets/img/images/sp41.jpg",
         },
     ]);
@@ -80,7 +84,7 @@ export default function NextTalksSection(){
                         <GridItem xs={12} sm={12} md={12}><h1 className={classes.title}>{talk.speaker}</h1></GridItem>
                         <GridItem xs={12} sm={12} md={12}><p className={classes.smallTitle}><b>{talk.date}</b></p></GridItem>
                         <GridItem xs={12} sm={12} md={12}><p className={classes.smallTitle}><b>{"Title: "}</b>{talk.title}</p></GridItem>
-                        <GridItem xs={12} sm={12} md={12}><p className={classes.smallTitle}><b>{"Abstract: "}</b> {talk.abstract}</p></GridItem>
+                        <GridItem xs={12} sm={12} md={12}><p className={classes.smallTitle}><b>{"Abstract: "}</b> {ReactHtmlParser (talk.abstract)}</p></GridItem>
                         <GridItem xs={12} sm={12} md={12}><p className={classes.smallTitle}><b>{"Keywords: "}</b> {talk.keywords.join(", ")}</p></GridItem>
                         </>
                     ))}
@@ -96,7 +100,7 @@ export default function NextTalksSection(){
                         <GridItem xs={12} sm={12} md={12}><h1 className={classes.title}>{talk.speaker}</h1></GridItem>
                         <GridItem xs={12} sm={12} md={12}><p className={classes.smallTitle}><b>{talk.date}</b></p></GridItem>
                         <GridItem xs={12} sm={12} md={12}><p className={classes.smallTitle}><b>{"Title: "}</b>{talk.title}</p></GridItem>
-                        <GridItem xs={12} sm={12} md={12}><p className={classes.smallTitle}><b>{"Abstract: "}</b> {talk.abstract}</p></GridItem>
+                        <GridItem xs={12} sm={12} md={12}><p className={classes.smallTitle}><b>{"Abstract: "}</b> {ReactHtmlParser (talk.abstract)}</p></GridItem>
                         <GridItem xs={12} sm={12} md={12}><p className={classes.smallTitle}><b>{"Keywords: "}</b> {talk.keywords.join(", ")}</p></GridItem>
                         </>
                     ))}
