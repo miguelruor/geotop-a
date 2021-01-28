@@ -107,6 +107,7 @@ export default function PreviousTalksPage(){
                         date: month[date.getMonth()] + " " + date.getDate().toString() + ", " + date.getFullYear().toString(),
                         abstract: doc.data().abstract,
                         video: doc.data().video,
+                        presentation: doc.data().presentation,
                     }
                 );
                 //alert(speakerID)

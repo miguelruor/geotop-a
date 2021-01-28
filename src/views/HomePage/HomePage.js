@@ -54,8 +54,10 @@ export default function HomePage(props) {
   const[talkTitle,setTalkTitle] = useState('');
   const[talkDescription,setTalkDescription] = useState('');
   const[talkVideo,setTalkVideo] = useState('');
+  const[talkSlides,setTalkSlides] = useState('');
   const[talkKeywords,setTalkKeywords] = useState([]);
   const [speaker, setSpeaker] = useState('');
+  const [talkDate, setDate] = useState('');
   const [modal, setModal] = React.useState(false);
 
   var speakerID = '';
@@ -72,7 +74,24 @@ export default function HomePage(props) {
                 setTalkTitle(doc.data().title);
                 setTalkKeywords(doc.data().keywords);
                 setTalkVideo(doc.data().video);
+                setTalkSlides(doc.data().presentation);
                 setTalkDescription(doc.data().abstract);
+                const date = doc.data().date.toDate();
+                var month = new Array();
+                month[0] = "January";
+                month[1] = "February";
+                month[2] = "March";
+                month[3] = "April";
+                month[4] = "May";
+                month[5] = "June";
+                month[6] = "July";
+                month[7] = "August";
+                month[8] = "September";
+                month[9] = "October";
+                month[10] = "November";
+                month[11] = "December";
+
+                setDate(month[date.getMonth()] + " " + date.getDate().toString() + ", " + date.getFullYear().toString());
                 speakerID = doc.id;
                 findTalk = true;
                 
@@ -162,17 +181,14 @@ export default function HomePage(props) {
                   id="modal-slide-description"
                   className={classes.modalBody}
                 >
-                  <p>
-                    <b>Speaker: </b>{speaker}
-                    <br/>
-                    <b>Title: </b>{talkTitle}
-                    <br/>
-                    <b>Keywords: </b> {talkKeywords.join(', ')}
-                    <br/>
-                    <b>Abstract: </b>{talkDescription}
-                    <br/>
-                    <b>Video: </b> <a href={talkVideo}>Click here</a>
-                  </p>
+                  <p><b>Speaker: </b> {speaker} </p>
+                  <p><b>Title: </b>{talkTitle} </p>
+                  <p><b>Video: </b> {talkVideo === null ? 'Not available yet.' : <a href={talkVideo}>Click here</a>} </p>
+                  {/*Cuando una talk no tiene presentacion, talkSlides es undefined, y en otro caso string*/}
+                  {typeof(talkSlides) == "undefined" ? null : <><p><b>Slides:</b> <a href={talkSlides} target="_blank">Click here</a></p></>}
+                  <p><b>Date: </b>{talkDate} </p>
+                  <p><b>Keywords: </b> {talkKeywords.join(', ')}</p>
+                  <p><b>Abstract: </b>{talkDescription}</p>
                 </DialogContent>
                 <DialogActions className={classes.modalFooter}>
                   <Button
