@@ -85,41 +85,42 @@ export default function FutureTalks(){
         {
             date: "September 17",
             speaker: "Enzo Orlandini", 
-            tittle: "Physics U. Padova,- USA"
+            tittle: "Physics U. Padova - Italy"
         },
         {
             date: "October 1",
             speaker: "Lynn Zechiedrich",
-            tittle: "University of Edinburgh - UK"
+            tittle: "Baylor College of Medicine - USA"
         },
         {
             date: "October 15",
-            speaker: "Daniel Peralta-Salas",
-            tittle: "ICMAT - Spain"
+            speaker: "Janet M. Thornton",
+            tittle: "EMBL-EBI - UK"
         },
         {
             date: "October 29",
-            speaker: "Stephen Childress",
-            tittle: "NYU - USA"
+            speaker: "Fazle Hussain",
+            tittle: "Texas Tech University - USA"
         },
         {
             date: "November 12",
-            speaker: "Andrzej Stasiak",
-            tittle: "University of Lausanne - Switzerland"
+            speaker: "Paweł Dłotko",
+            tittle: "Dioscuri Center - Poland"
         },
         {
             date: "November 19",
-            speaker: "Aldo Guzmán-Sáenz",
-            tittle: "IBM Thomas J. Watson Research Center - USA"
+            speaker: "Antonio Rieser",
+            tittle: "CIMAT - Mexico"
         },
         {
             date: "December 10",
-            speaker: "Caroline Uhler",
-            tittle: "ETH Zurich - Switzerland"
+            speaker: "Matthew Kahle",
+            tittle: "Ohio State University - USA"
         },
     ]);
 
     return(
+        <>
         <div className={classes.section} style={{paddingTop: 20}}>
             <h1 className={classes.title}>SPRING 2021 TALKS</h1>
             <div styles={{justifyContent: 'center'}}>
@@ -146,5 +147,32 @@ export default function FutureTalks(){
                 </GridContainer>
             </div>
         </div>
+        <div className={classes.section} style={{paddingTop: 20}}>
+            <h1 className={classes.title}>FALL 2021 TALKS</h1>
+            <div styles={{justifyContent: 'center'}}>
+                <GridContainer>
+                    <GridItem xs={3} sm={3} md={2}>
+                        <Button type="button" color="primary" disabled>Date</Button>
+                    </GridItem>
+                    <GridItem xs={9} sm={9} md={10}>
+                        <Button type="button" color="primary" disabled>Speaker</Button>
+                    </GridItem>
+                    {talks.map(talk => (
+                        <>
+                        <GridItem xs={3} sm={3} md={2}>
+                            <p className={classes.nextTalks}>{talk.date}</p>
+                        </GridItem>
+                        <GridItem xs={3} sm={3} md={2}>
+                            <p className={classes.nextTalks}>{talk.speaker}</p>
+                        </GridItem>
+                        <GridItem xs={6} sm={6} md={8}>
+                            <p className={classes.nextTalks}>{talk.tittle}</p>
+                        </GridItem>
+                        </>
+                    ))}
+                </GridContainer>
+            </div>
+        </div>
+        </>
     );
 }

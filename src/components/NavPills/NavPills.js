@@ -45,6 +45,7 @@ export default function NavPills(props) {
   const[talkDate,setTalkDate] = useState('');
   const[talkDescription,setTalkDescription] = useState('');
   const[talkVideo,setTalkVideo] = useState('');
+  const[talkPresentation,setTalkPresentation] = useState('');
   const[talkSpeaker,setTalkSpeaker] = useState('');
   const[talkKeywords,setTalkKeywords] = useState([]);
   const[speakerID,setSpeakerID] = useState(0);
@@ -153,6 +154,7 @@ export default function NavPills(props) {
                         onClick={() => {setClassicModal(true); 
                             setTalkTitle(talk['title']);
                             setTalkVideo(talk['video']);
+                            setTalkPresentation(talk['presentation']);
                             setTalkDescription(talk['abstract']);
                             setTalkKeywords(talk['keywords']);
                             setTalkSpeaker(talk['speaker']); 
@@ -196,7 +198,8 @@ export default function NavPills(props) {
                         >
                           <p><b>Speaker: </b> {talkSpeaker} </p>
                           <p><b>Title: </b>{talkTitle} </p>
-                          <p><b>Video: </b> {talkVideo === null ? 'Not available yet.' : <a href={talkVideo}>Click here</a>} </p>
+                          <p><b>Video: </b> {talkVideo === null ? 'Not available yet.' : <a href={talkVideo} target="_blank">Click here</a>} </p>
+                          {typeof(talkPresentation) == "undefined" ? null : <><p><b>Slides:</b> <a href={talkPresentation} target="_blank">Click here</a></p></>}
                           <p><b>Date: </b>{talkDate} </p>
                           <p><b>Keywords: </b> {talkKeywords.join(', ')}</p>
                           <p><b>Abstract: </b>{talkDescription}</p>
