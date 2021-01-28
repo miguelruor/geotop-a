@@ -157,7 +157,7 @@ export default function FutureTalks(){
                     <GridItem xs={9} sm={9} md={10}>
                         <Button type="button" color="primary" disabled>Speaker</Button>
                     </GridItem>
-                    {talks.map(talk => (
+                    {talks2.map(talk => (
                         <>
                         <GridItem xs={3} sm={3} md={2}>
                             <p className={classes.nextTalks}>{talk.date}</p>
