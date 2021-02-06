@@ -17,7 +17,22 @@ import removeAccents from "remove-accents"
 
 import {db} from '../../../ConfigFirebase';
 
+// For modals
+
+import Button from "../../../components/CustomButtons/Button.js";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
+import Close from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
+import Slide from "@material-ui/core/Slide";
+
 const useStyles = makeStyles(styles);
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="down" ref={ref} {...props} />;
+  });
 
 export default function     ListSpeakersSection(){
     const classes = useStyles();
@@ -30,6 +45,29 @@ export default function     ListSpeakersSection(){
     const [lettersInKeywords, setLettersInKeywords] = useState([]);
     const [visitLetters, setVisitLetters] = useState({});
     const [speakersById,setSpeakersById] = useState({});
+    const [allTalks, setTalks] = useState({});
+    const [modal, setModal] = useState(false);
+    const[talkTitle,setTalkTitle] = useState('');
+    const[talkDate,setTalkDate] = useState('');
+    const[talkDescription,setTalkDescription] = useState('');
+    const[talkVideo,setTalkVideo] = useState('');
+    const[talkPresentation,setTalkPresentation] = useState('');
+    const[talkSpeaker,setTalkSpeaker] = useState('');
+    const[talkKeywords,setTalkKeywords] = useState([]);
+
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
     
     useEffect(async()=>{
         
@@ -37,12 +75,19 @@ export default function     ListSpeakersSection(){
         await db.collection('speakers').get()
         .then(function(querySnapshot){
             querySnapshot.forEach(async function(doc){
-                speakers[doc.id] = doc.data().surname;
+                var mi = doc.data().middle_initial;
+                speakers[doc.id] = {
+                    surname: doc.data().surname,
+                    completeName: doc.data().name + " " + 
+                    (mi != null ? mi : "") + " " + doc.data().surname
+                };
             })
         })
         .catch(function(error){
             alert("Some speakers cannot load.");
         });
+
+        var talks = {};
 
         await db.collection("talks").get()
         .then(function(querySnapshot){
@@ -55,11 +100,21 @@ export default function     ListSpeakersSection(){
                         if(!(keys[i] in keywords_aux)){
                             keywords_aux[keys[i]] = []
                         }
-                        var idx = doc.data().speaker;
-                        keywords_aux[keys[i]].push(
-                            [doc.id, speakers[idx], doc.data().date.toDate().getFullYear(), doc.data().video]
-                        );   
+                        keywords_aux[keys[i]].push(doc.id); 
                     }
+                    var idx = doc.data().speaker;
+                    var date = doc.data().date.toDate();
+                    talks[doc.id] = {
+                        surname: speakers[idx].surname,
+                        speaker: speakers[idx].completeName,
+                        year: date.getFullYear(),
+                        video: doc.data().video,
+                        date: month[date.getMonth()] + " " + date.getDate().toString() + ", " + date.getFullYear().toString(),
+                        title: doc.data().title,
+                        keywords: doc.data().keywords,
+                        slides: doc.data().presentation,
+                        abstract: doc.data().abstract,
+                    };
                 }
             });
         })
@@ -67,6 +122,7 @@ export default function     ListSpeakersSection(){
             alert("Cannot load some talk")
         });
         setKeywords(keywords_aux);
+        setTalks(talks);
     },[]);
 
     // Al modificar speakers list con el contenido se actualiza
@@ -123,7 +179,77 @@ export default function     ListSpeakersSection(){
                        {k} <br/>
                        {keywords[k].map((data) =>{ 
                         return (
-                            <>{first ? first=false : ',' } {data[1]} <a href={data[3]} target="_blank">{data[2]}</a>  </>
+                            //<>{first ? first=false : ',' } {data[1]} <a href={data[3]} target="_blank">{data[2]}</a>  </>
+                            <>{first ? first = false : ','} {allTalks[data].surname + " "} 
+                            <Button 
+                                color='primary' 
+                                className={classes.buttonList}
+                                onClick = {() => {
+                                setModal(true);
+                                setTalkTitle(allTalks[data].title);
+                                setTalkVideo(allTalks[data].video);
+                                setTalkPresentation(allTalks[data].slides);
+                                setTalkDescription(allTalks[data].abstract);
+                                setTalkKeywords(allTalks[data].keywords);
+                                setTalkSpeaker(allTalks[data].speaker); 
+                                setTalkDate(allTalks[data].date); 
+                            }}>
+                                {allTalks[data].year}</Button>
+                            <Dialog
+                                classes={{
+                                root: classes.center,
+                                paper: classes.modal
+                                }}
+                                open={modal}
+                                TransitionComponent={Transition}
+                                keepMounted
+                                onClose={() => setModal(false)}
+                                aria-labelledby="modal-slide-title"
+                                aria-describedby="modal-slide-description"
+                            >
+                                <DialogTitle
+                                    id="classic-modal-slide-title"
+                                    disableTypography
+                                    className={classes.modalHeader}
+                                >
+                                    <IconButton
+                                        className={classes.modalCloseButton}
+                                        key="close"
+                                        aria-label="Close"
+                                        color="inherit"
+                                        onClick={() => {
+                                            setModal(false);
+                                        }
+                                    }
+                                    >
+                                        <Close className={classes.modalClose} />
+                                    </IconButton>
+                                    <h2 className={classes.modalTitle} >Talk Details</h2>
+                                </DialogTitle>
+                                <DialogContent
+                                    id="modal-slide-description"
+                                    className={classes.modalBody}
+                                    >
+                                    <p><b>Speaker: </b> {talkSpeaker} </p>
+                                    <p><b>Title: </b>{talkTitle} </p>
+                                    <p><b>Video: </b> {talkVideo === null ? 'Not available yet.' : <a href={talkVideo} target="_blank">Click here</a>} </p>
+                                    {/*Cuando una talk no tiene presentacion, talkSlides es undefined, y en otro caso string*/}
+                                    {typeof(talkPresentation) == "undefined" ? null : <><p><b>Slides:</b> <a href={talkPresentation} target="_blank">Click here</a></p></>}
+                                    <p><b>Date: </b>{talkDate} </p>
+                                    <p><b>Keywords: </b> {talkKeywords.join(', ')}</p>
+                                    <p><b>Abstract: </b>{talkDescription}</p>
+                                </DialogContent>
+                                <DialogActions className={classes.modalFooter}>
+                                <Button
+                                    onClick={() => setModal(false)}
+                                    color="danger"
+                                    simple
+                                >
+                                    Close
+                                </Button>
+                                </DialogActions>
+                            </Dialog>
+                            </>
                         )
                        })} </>    
                     )})}

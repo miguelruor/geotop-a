@@ -62,6 +62,9 @@ const teamStyle = {
     textDecoration: "none",
     fontSize: '20px', 
     fontStyle:'normal'
+  },
+  buttonList:{
+    padding: "2px 10px"
   }
 };
 

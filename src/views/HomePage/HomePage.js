@@ -64,7 +64,7 @@ export default function HomePage(props) {
   var findTalk = false;
 
   useEffect(async () => {
-    await db.collection("talks").orderBy("date", "desc").limit(2)
+    await db.collection("talks").orderBy("date", "desc").limit(4)
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
@@ -183,7 +183,7 @@ export default function HomePage(props) {
                 >
                   <p><b>Speaker: </b> {speaker} </p>
                   <p><b>Title: </b>{talkTitle} </p>
-                  <p><b>Video: </b> {talkVideo === null ? 'Not available yet.' : <a href={talkVideo}>Click here</a>} </p>
+                  <p><b>Video: </b> {talkVideo === null ? 'Not available yet.' : <a href={talkVideo} target="_blank">Click here</a>} </p>
                   {/*Cuando una talk no tiene presentacion, talkSlides es undefined, y en otro caso string*/}
                   {typeof(talkSlides) == "undefined" ? null : <><p><b>Slides:</b> <a href={talkSlides} target="_blank">Click here</a></p></>}
                   <p><b>Date: </b>{talkDate} </p>

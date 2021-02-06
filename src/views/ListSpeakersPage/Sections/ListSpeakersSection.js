@@ -18,18 +18,56 @@ import styles from "../../../assets/jss/material-kit-react/views/landingPageSect
 import MenuOpen from '@material-ui/icons/MenuOpen';
 
 import {db} from '../../../ConfigFirebase';
-import { Speaker } from "@material-ui/icons";
+
+// For modals
+
+import Button from "../../../components/CustomButtons/Button.js";
+import Dialog from "@material-ui/core/Dialog";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
+import Close from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
+import Slide from "@material-ui/core/Slide";
 
 const useStyles = makeStyles(styles);
 
+const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="down" ref={ref} {...props} />;
+  });
+
 export default function ListSpeakersSection(){
     const classes = useStyles();
-    var speakers = [];
     const [speakersList,setSpeakersList] = useState([]);
+    const [speakersDic, setSpeakersDic] = useState({});
     const [speakersListByLetter,setSpeakersListByLatter] = useState([]);
     const [lettersInSurname, setLettersInSurname] = useState([]);
     const [visitLetters, setVisitLetters] = useState({});
     const [talks,setTalks] = useState({});
+
+    //para modals
+    const [modal, setModal] = useState(false);
+    const[talkTitle,setTalkTitle] = useState('');
+    const[talkDate,setTalkDate] = useState('');
+    const[talkDescription,setTalkDescription] = useState('');
+    const[talkVideo,setTalkVideo] = useState('');
+    const[talkPresentation,setTalkPresentation] = useState('');
+    const[talkSpeaker,setTalkSpeaker] = useState('');
+    const[talkKeywords,setTalkKeywords] = useState([]);
+
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
 
     useEffect(async () => {
         var talks = {};
@@ -37,53 +75,53 @@ export default function ListSpeakersSection(){
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(async function(doc){
-                talks[doc.id] = doc.data();
-            })
+                var date = doc.data().date.toDate();
+                talks[doc.id] = {
+                    speakerID: doc.data().speaker,
+                    year: date.getFullYear(),
+                    video: doc.data().video,
+                    date: month[date.getMonth()] + " " + date.getDate().toString() + ", " + date.getFullYear().toString(),
+                    title: doc.data().title,
+                    keywords: doc.data().keywords,
+                    slides: doc.data().presentation,
+                    abstract: doc.data().abstract,
+                };
+            });
         })
         .catch(function(error) {
             alert("Cannot load some talk.");
         });
         setTalks(talks);
+    
+        var speakers = {};
 
         await db.collection("speakers").where("talks","!=", null)
             .get()
             .then(function(querySnapshot) {
                 querySnapshot.forEach(function(doc) {
-                    speakers.push({
+                    var mi = doc.data().middle_initial;
+
+                    speakers[doc.id] = {
                         name: doc.data().name,
                         surname: doc.data().surname,
                         middle_initial: doc.data().middle_initial,
+                        completeName: doc.data().name + " " + 
+                            (mi != null ? mi : "") + " " + doc.data().surname,
                         talks: doc.data().talks,
                         years: [],
                         inList: false
-                    });
-                    
-                    var speakers_len = speakers.length
-                    var talks_len = speakers[speakers_len-1].talks.length
+                    };
 
-                    /*for(var i=0; i<talks_len; i++){
-                        db.collection("talks").doc(speakers[speakers_len-1].talks[i].toString())
-                        .get()
-                        .then(function(doc){
-                            speakers[speakers_len-1].years
-                            .push(doc.data().date.toDate().getFullYear());
-                        })
-                        .catch(function(error){
-                            alert("Cannot load some talk");
-                        });
-                    }*/
-                    if(talks[speakers[speakers_len-1].talks[0].toString()].video != null){
-                        speakers[speakers_len-1].inList = true;
+                    var talks_len = speakers[doc.id].talks.length;
+
+                    if(talks[speakers[doc.id].talks[0].toString()].video != null){
+                        speakers[doc.id].inList = true;
                     }
 
                     for(var i=0; i<talks_len; i++){
-                        var talkDate = talks[speakers[speakers_len-1].talks[i].toString()].date.toDate();
+                        var talkDate = talks[speakers[doc.id].talks[i].toString()].date.toDate();
 
-                        /*if(talkDate > new Date()){
-                            break;
-                        }*/
-
-                        speakers[speakers_len-1].years.push(talkDate.getFullYear());
+                        speakers[doc.id].years.push(talkDate.getFullYear());
                     }
 
                 }); // Se acaba el forEach
@@ -91,17 +129,21 @@ export default function ListSpeakersSection(){
             .catch(function(error) {
                 alert("Cannot load speakers");
             });
-        speakers.sort(function(a,b){
-            if(removeAccents(a.surname) > removeAccents(b.surname)){
-                return 1;
-            }
-            if(a.surname < b.surname){
-                return -1;
-            }
-            return 0;
-        });
-        setSpeakersList(speakers);
-    },[]);
+
+
+
+            /*listSpeakers.sort(function(a,b){
+                if(removeAccents(a.surname) > removeAccents(b.surname)){
+                    return 1;
+                }
+                if(a.surname < b.surname){
+                    return -1;
+                }
+                return 0;
+            });*/
+            setSpeakersDic(speakers);
+            //setSpeakersList(listSpeakers);
+        },[]);
 
     // Al modificar speakers list con el contenido se actualiza
     useEffect(() => {
@@ -113,8 +155,8 @@ export default function ListSpeakersSection(){
         let letterSet = new Set();
         let visitLetters = {};
         let speakersWithLetter = {};
-        speakersList
-        .forEach(speaker => {
+
+        speakersList.forEach(speaker => {
             if(!speaker.inList){
                 return;
             }
@@ -125,8 +167,8 @@ export default function ListSpeakersSection(){
             visitLetters[letter] = false;
             speakersWithLetter[letter] = [];
         });
-        speakersList
-        .forEach(speaker => {
+
+        speakersList.forEach(speaker => {
             if(!speaker.inList){
                 return;
             }
@@ -134,6 +176,7 @@ export default function ListSpeakersSection(){
             //console.log(letter);
             speakersWithLetter[letter].push(speaker);
         });
+        
         setLettersInSurname([...letterSet]);
         setVisitLetters(visitLetters);
         setSpeakersListByLatter(speakersWithLetter); 
