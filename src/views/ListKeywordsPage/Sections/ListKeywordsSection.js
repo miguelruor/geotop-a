@@ -179,7 +179,6 @@ export default function     ListSpeakersSection(){
                        {k} <br/>
                        {keywords[k].map((data) =>{ 
                         return (
-                            //<>{first ? first=false : ',' } {data[1]} <a href={data[3]} target="_blank">{data[2]}</a>  </>
                             <>{first ? first = false : ','} {allTalks[data].surname + " "} 
                             <Button 
                                 color='primary' 

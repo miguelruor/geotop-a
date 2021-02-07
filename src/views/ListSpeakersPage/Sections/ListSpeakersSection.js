@@ -29,6 +29,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Close from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import Slide from "@material-ui/core/Slide";
+import { AddAlertOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles(styles);
 
@@ -38,12 +39,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 export default function ListSpeakersSection(){
     const classes = useStyles();
-    const [speakersList,setSpeakersList] = useState([]);
+    const [speakersIDList, setSpeakersIDList] = useState([]);
     const [speakersDic, setSpeakersDic] = useState({});
-    const [speakersListByLetter,setSpeakersListByLatter] = useState([]);
+    const [speakersListByLetter, setSpeakersListByLatter] = useState({});
     const [lettersInSurname, setLettersInSurname] = useState([]);
     const [visitLetters, setVisitLetters] = useState({});
-    const [talks,setTalks] = useState({});
+    const [talks, setTalks] = useState({});
 
     //para modals
     const [modal, setModal] = useState(false);
@@ -71,6 +72,7 @@ export default function ListSpeakersSection(){
 
     useEffect(async () => {
         var talks = {};
+
         await db.collection("talks")
         .get()
         .then(function(querySnapshot) {
@@ -82,6 +84,7 @@ export default function ListSpeakersSection(){
                     video: doc.data().video,
                     date: month[date.getMonth()] + " " + date.getDate().toString() + ", " + date.getFullYear().toString(),
                     title: doc.data().title,
+                    season: doc.data().season,
                     keywords: doc.data().keywords,
                     slides: doc.data().presentation,
                     abstract: doc.data().abstract,
@@ -91,9 +94,11 @@ export default function ListSpeakersSection(){
         .catch(function(error) {
             alert("Cannot load some talk.");
         });
+
         setTalks(talks);
     
         var speakers = {};
+        var speakersID = [];
 
         await db.collection("speakers").where("talks","!=", null)
             .get()
@@ -104,7 +109,7 @@ export default function ListSpeakersSection(){
                     speakers[doc.id] = {
                         name: doc.data().name,
                         surname: doc.data().surname,
-                        middle_initial: doc.data().middle_initial,
+                        middle_initial: mi,
                         completeName: doc.data().name + " " + 
                             (mi != null ? mi : "") + " " + doc.data().surname,
                         talks: doc.data().talks,
@@ -112,16 +117,20 @@ export default function ListSpeakersSection(){
                         inList: false
                     };
 
+                    speakersID.push(doc.id)
+
                     var talks_len = speakers[doc.id].talks.length;
 
+                    // Si la unica platica del speaker no tiene video aun
                     if(talks[speakers[doc.id].talks[0].toString()].video != null){
                         speakers[doc.id].inList = true;
                     }
 
                     for(var i=0; i<talks_len; i++){
-                        var talkDate = talks[speakers[doc.id].talks[i].toString()].date.toDate();
+                        // los ids de las platicas asociadas a un speaker son enteros en la base de datos
+                        var talkYear = talks[speakers[doc.id].talks[i].toString()].year;
 
-                        speakers[doc.id].years.push(talkDate.getFullYear());
+                        speakers[doc.id].years.push(talkYear);
                     }
 
                 }); // Se acaba el forEach
@@ -130,25 +139,23 @@ export default function ListSpeakersSection(){
                 alert("Cannot load speakers");
             });
 
-
-
-            /*listSpeakers.sort(function(a,b){
-                if(removeAccents(a.surname) > removeAccents(b.surname)){
+            speakersID.sort(function(a,b){
+                if(removeAccents(speakers[a].surname) > removeAccents(speakers[b].surname)){
                     return 1;
                 }
-                if(a.surname < b.surname){
+                if(removeAccents(speakers[a].surname) < removeAccents(speakers[b].surname)){
                     return -1;
                 }
                 return 0;
-            });*/
+            });
             setSpeakersDic(speakers);
-            //setSpeakersList(listSpeakers);
+            setSpeakersIDList(speakersID);
         },[]);
 
     // Al modificar speakers list con el contenido se actualiza
     useEffect(() => {
         handleLettersInSurname();
-    },[speakersList]);
+    },[speakersIDList]);
       
     // Función que revisa las letras que existen para hacer listas
     function handleLettersInSurname(){
@@ -156,23 +163,23 @@ export default function ListSpeakersSection(){
         let visitLetters = {};
         let speakersWithLetter = {};
 
-        speakersList.forEach(speaker => {
-            if(!speaker.inList){
+        speakersIDList.forEach(speaker => {
+            if(!speakersDic[speaker].inList){
                 return;
             }
 
-            const letter = removeAccents(speaker.surname.charAt(0));
+            const letter = removeAccents(speakersDic[speaker].surname.charAt(0));
             //console.log(letter);
             letterSet.add(letter);
             visitLetters[letter] = false;
             speakersWithLetter[letter] = [];
         });
 
-        speakersList.forEach(speaker => {
-            if(!speaker.inList){
+        speakersIDList.forEach(speaker => {
+            if(!speakersDic[speaker].inList){
                 return;
             }
-            const letter = removeAccents(speaker.surname.charAt(0));
+            const letter = removeAccents(speakersDic[speaker].surname.charAt(0));
             //console.log(letter);
             speakersWithLetter[letter].push(speaker);
         });
@@ -187,14 +194,83 @@ export default function ListSpeakersSection(){
             var firstTalk = true;
             return(
                 <li style={{listStyleType:'square'}}>
-                <h5 style={{fontSize: '20px', fontStyle:'normal'}}>{speaker.surname} {speaker.name} {speaker.middle_initial} <br/>
-                {speaker.talks.map(function(talkID) {
-                    if(talks[talkID].video == null){
+                <h5 style={{fontSize: '20px', fontStyle:'normal'}}>{speakersDic[speaker].surname} {speakersDic[speaker].name} {speakersDic[speaker].middle_initial} 
+                {speakersDic[speaker].talks.map(function(talkID) {
+                    var talkID_aux = talkID.toString();
+                    if(talks[talkID_aux].video == null){
                         return;
                     }
                     return (
                         <>
-                            {firstTalk ? firstTalk=false : ', ' }<a href={talks[talkID].video} target="_blank">{talks[talkID].season}</a>
+                            {firstTalk ? firstTalk=false  : ', ' }
+                            <Button 
+                                color='primary' 
+                                className={classes.buttonList}
+                                onClick = {() => {
+                                setModal(true);
+                                setTalkTitle(talks[talkID_aux].title);
+                                setTalkVideo(talks[talkID_aux].video);
+                                setTalkPresentation(talks[talkID_aux].slides);
+                                setTalkDescription(talks[talkID_aux].abstract);
+                                setTalkKeywords(talks[talkID_aux].keywords);
+                                setTalkSpeaker(speakersDic[talks[talkID_aux].speakerID.toString()].completeName); 
+                                setTalkDate(talks[talkID_aux].date); 
+                            }}>
+                                {talks[talkID_aux].year}</Button>
+                            <Dialog
+                                classes={{
+                                root: classes.center,
+                                paper: classes.modal
+                                }}
+                                open={modal}
+                                TransitionComponent={Transition}
+                                keepMounted
+                                onClose={() => setModal(false)}
+                                aria-labelledby="modal-slide-title"
+                                aria-describedby="modal-slide-description"
+                            >
+                                <DialogTitle
+                                    id="classic-modal-slide-title"
+                                    disableTypography
+                                    className={classes.modalHeader}
+                                >
+                                    <IconButton
+                                        className={classes.modalCloseButton}
+                                        key="close"
+                                        aria-label="Close"
+                                        color="inherit"
+                                        onClick={() => {
+                                            setModal(false);
+                                        }
+                                    }
+                                    >
+                                        <Close className={classes.modalClose} />
+                                    </IconButton>
+                                    <h2 className={classes.modalTitle} >Talk Details</h2>
+                                </DialogTitle>
+                                <DialogContent
+                                    id="modal-slide-description"
+                                    className={classes.modalBody}
+                                    >
+                                    <p><b>Speaker: </b> {talkSpeaker} </p>
+                                    <p><b>Title: </b>{talkTitle} </p>
+                                    <p><b>Video: </b> {talkVideo === null ? 'Not available yet.' : <a href={talkVideo} target="_blank">Click here</a>} </p>
+                                    {/*Cuando una talk no tiene presentacion, talkSlides es undefined, y en otro caso string*/}
+                                    {typeof(talkPresentation) == "undefined" ? null : <><p><b>Slides:</b> <a href={talkPresentation} target="_blank">Click here</a></p></>}
+                                    <p><b>Date: </b>{talkDate} </p>
+                                    <p><b>Keywords: </b> {talkKeywords.join(', ')}</p>
+                                    <p><b>Abstract: </b>{talkDescription}</p>
+                                </DialogContent>
+                                <DialogActions className={classes.modalFooter}>
+                                <Button
+                                    onClick={() => setModal(false)}
+                                    color="danger"
+                                    simple
+                                >
+                                    Close
+                                </Button>
+                                </DialogActions>
+                            </Dialog>
                         </>
                     );  
                 })}
@@ -229,7 +305,7 @@ export default function ListSpeakersSection(){
     const [count, setCount] = useState(0);
 
     function onclickLetter(letter){
-        let newVisit = visitLetters;
+        var newVisit = visitLetters;
         newVisit[letter] = !newVisit[letter];
         setVisitLetters(newVisit);
         setCount(count+1);
