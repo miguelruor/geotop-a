@@ -16,31 +16,35 @@ import CardBody from "../../../components/Card/CardBody.js";
 import CardFooter from "../../../components/Card/CardFooter.js";
 
 import styles from "../../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
-import image1 from "../../../assets/img/images/speakers/sp042.png";
-import image2 from "../../../assets/img/images/speakers/sp043.png";
+import image1 from "../../../assets/img/images/speakers/sp043.png";
+import image2 from "../../../assets/img/images/speakers/sp044.png";
 
 const useStyles = makeStyles(styles);
 
 export default function NextTalksSection(){
     
-    const [talks, setTalks] = useState([
+    const [talks2, setTalks2] = useState([
         {
-            date: "February 5, 2021",
-            speaker: "Alice Patania",
-            title: "Predicting emergent sequences of neural networks via directional graphs",
-            keywords: ['Neuroscience', 'topological data analysis (TDA)', 'graph signal processing'],
-            abstract: 'Sequences of neural activity arise in many brain areas, including cortex, hippocampus,' 
-            + 'and central pattern generator circuits that underlie rhythmic behaviors like locomotion. A' +
-            ' fundamental question is to understand how the network’s connectivity shapes neuronal activity. ' 
-            + 'Surprisingly, there is a correspondence between unstable fixed points and dynamic attractors. '
-            + 'In this talk we will look into different network architectures and the fixed points they produce'
-            + ' by decomposing the networks into “directional” components.' +
-            ' This is joint work with C.Curto, F.Burtscher , S. Ebli, D.Egas, K.Morrison, N.Sanderson  and Y.Zhou.',
-            image: "../../../assets/img/images/sp41.jpg",
+            date: "March 5, 2021",
+            speaker: "Davide Michieletto",
+            title: "Topologically Active Polymers and DNA",
+            keywords: ["DNA topology", "Microrheology", "Soft Matter", "Living Polymers"],
+            abstract: "<p>Polymer physics principles heavily rely on the assumption that polymers do not change "
+            + "topology (or architecture) in time. This is not the case for DNA, which is constantly "
+            + "topologically re-arranged within the cell nucleus. "
+            + "Inspired by this, I propose to study entangled systems of polymers which can selectively "
+            + "alter their topology and architecture in time and may expend energy to do so. I argue that "
+            + "solutions of these 'topologically active (living) polymers' can display unconventional "
+            + "viscoelastic behaviours and can be conveniently realised using solutions of DNA "
+            + "functionalised by certain families of proteins. </p>"
+            + "<p>In this talk I will present my first excursion into this field and present some recent "
+            + "results on the microrheology of entangled Lambda DNA undergoing digestion by restriction "
+            + "enzymes. Finally, I will discuss some wild conjectures and speculations about possible "
+            + "future directions.</p>",
         },
     ]);
 
-    const [talks2, setTalks2] = useState([
+    const [talks, setTalks] = useState([
         {
             date: "February 19, 2021",
             speaker: "Nina Otter",
@@ -61,7 +65,6 @@ export default function NextTalksSection(){
             + "</p>"
             + "<p>This talk is based on joint work in progress with Miguel O'Malley and Sara Kalisnik, as well as the "
             + "<a href = https://arxiv.org/abs/1807.01540>preprint</a>.</p>",
-            image: "../../../assets/img/images/sp41.jpg",
         },
     ]);
 
