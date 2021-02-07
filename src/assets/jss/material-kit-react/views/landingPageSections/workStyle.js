@@ -7,8 +7,8 @@ const workStyle = {
   title: {
     ...title,
     marginBottom: "50px",
-    marginTop: "30px",
-    minHeight: "32px",
+    margin: "10px",
+    minHeight: "30px",
     textDecoration: "none",
     textAlign: "center"
   },
