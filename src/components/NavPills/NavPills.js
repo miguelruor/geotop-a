@@ -15,6 +15,7 @@ import GridContainer from "../Grid/GridContainer.js"  //"../components/Grid/Grid
 import GridItem from "../Grid/GridItem.js" // "../components/Grid/GridItem.js";
 
 import styles from "../../assets/jss/material-kit-react/components/navPillsStyle.js";
+import ReactHtmlParser from 'react-html-parser';
 
 import Card from "../../components/Card/Card.js";
 import CardBody from "../../components/Card/CardBody.js"
@@ -202,7 +203,7 @@ export default function NavPills(props) {
                           {typeof(talkPresentation) == "undefined" ? null : <><p><b>Slides:</b> <a href={talkPresentation} target="_blank">Click here</a></p></>}
                           <p><b>Date: </b>{talkDate} </p>
                           <p><b>Keywords: </b> {talkKeywords.join(', ')}</p>
-                          <p><b>Abstract: </b>{talkDescription}</p>
+                          <p><b>Abstract: </b>{ReactHtmlParser(talkDescription)}</p>
                             
                         </DialogContent>
                         <DialogActions className={classes.modalFooter}>

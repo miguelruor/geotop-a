@@ -16,6 +16,7 @@ import MenuOpen from '@material-ui/icons/MenuOpen';
 import removeAccents from "remove-accents"
 
 import {db} from '../../../ConfigFirebase';
+import ReactHtmlParser from 'react-html-parser';
 
 // For modals
 
@@ -236,7 +237,7 @@ export default function     ListSpeakersSection(){
                                     {typeof(talkPresentation) == "undefined" ? null : <><p><b>Slides:</b> <a href={talkPresentation} target="_blank">Click here</a></p></>}
                                     <p><b>Date: </b>{talkDate} </p>
                                     <p><b>Keywords: </b> {talkKeywords.join(', ')}</p>
-                                    <p><b>Abstract: </b>{talkDescription}</p>
+                                    <p><b>Abstract: </b>{ReactHtmlParser (talkDescription)}</p>
                                 </DialogContent>
                                 <DialogActions className={classes.modalFooter}>
                                 <Button
