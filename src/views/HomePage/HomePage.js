@@ -23,6 +23,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Close from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
 import Slide from "@material-ui/core/Slide";
+import ReactHtmlParser from 'react-html-parser';
 
 import styles from "./HomePageStyle.js";
 //import styles from "./HomePageStyle.js";
@@ -188,7 +189,7 @@ export default function HomePage(props) {
                   {typeof(talkSlides) == "undefined" ? null : <><p><b>Slides:</b> <a href={talkSlides} target="_blank">Click here</a></p></>}
                   <p><b>Date: </b>{talkDate} </p>
                   <p><b>Keywords: </b> {talkKeywords.join(', ')}</p>
-                  <p><b>Abstract: </b>{talkDescription}</p>
+                  <p><b>Abstract: </b>{ReactHtmlParser (talkDescription)}</p>
                 </DialogContent>
                 <DialogActions className={classes.modalFooter}>
                   <Button
