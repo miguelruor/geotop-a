@@ -16,14 +16,14 @@ import CardBody from "../../../components/Card/CardBody.js";
 import CardFooter from "../../../components/Card/CardFooter.js";
 
 import styles from "../../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
-import image1 from "../../../assets/img/images/speakers/sp043.png";
-import image2 from "../../../assets/img/images/speakers/sp044.png";
+//import image1 from "../../../assets/img/images/speakers/sp043.png";
+import image1 from "../../../assets/img/images/speakers/sp044.png";
 
 const useStyles = makeStyles(styles);
 
 export default function NextTalksSection(){
     
-    const [talks2, setTalks2] = useState([
+    const [talks, setTalks] = useState([
         {
             date: "March 5, 2021",
             speaker: "Davide Michieletto",
@@ -44,7 +44,7 @@ export default function NextTalksSection(){
         },
     ]);
 
-    const [talks, setTalks] = useState([
+    const [talks2, setTalks2] = useState([
         {
             date: "February 19, 2021",
             speaker: "Nina Otter",
@@ -93,7 +93,7 @@ export default function NextTalksSection(){
                     ))}
                 </GridContainer>
             </GridItem>
-            <GridItem xs={12} sm={12} md={5} className={classes.nextTalk}>
+            {/*<GridItem xs={12} sm={12} md={5} className={classes.nextTalk}>
               <img src={image2} className={imageClasses}/>
             </GridItem>
             <GridItem xs={12} sm={12} md={7}>
@@ -108,7 +108,7 @@ export default function NextTalksSection(){
                         </>
                     ))}
                 </GridContainer>
-            </GridItem>
+                    </GridItem>*/}
         </GridContainer>
     );
 }
