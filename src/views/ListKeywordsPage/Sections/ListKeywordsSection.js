@@ -93,30 +93,30 @@ export default function     ListSpeakersSection(){
         await db.collection("talks").get()
         .then(function(querySnapshot){
             querySnapshot.forEach(async function(doc){
-                if(doc.data().video != null){
-                    let keys = doc.data().keywords;
-                    let keys_len = keys.length;
-                    for(let i=0; i<keys_len; i++){
-                        // Checo si encuentro una keyword nueva
-                        if(!(keys[i] in keywords_aux)){
-                            keywords_aux[keys[i]] = []
-                        }
-                        keywords_aux[keys[i]].push(doc.id); 
+                
+                let keys = doc.data().keywords;
+                let keys_len = keys.length;
+                for(let i=0; i<keys_len; i++){
+                    // Checo si encuentro una keyword nueva
+                    if(!(keys[i] in keywords_aux)){
+                        keywords_aux[keys[i]] = []
                     }
-                    var idx = doc.data().speaker;
-                    var date = doc.data().date.toDate();
-                    talks[doc.id] = {
-                        surname: speakers[idx].surname,
-                        speaker: speakers[idx].completeName,
-                        year: date.getFullYear(),
-                        video: doc.data().video,
-                        date: month[date.getMonth()] + " " + date.getDate().toString() + ", " + date.getFullYear().toString(),
-                        title: doc.data().title,
-                        keywords: doc.data().keywords,
-                        slides: doc.data().presentation,
-                        abstract: doc.data().abstract,
-                    };
+                    keywords_aux[keys[i]].push(doc.id); 
                 }
+                var idx = doc.data().speaker;
+                var date = doc.data().date.toDate();
+                talks[doc.id] = {
+                    surname: speakers[idx].surname,
+                    speaker: speakers[idx].completeName,
+                    year: date.getFullYear(),
+                    video: doc.data().video,
+                    date: month[date.getMonth()] + " " + date.getDate().toString() + ", " + date.getFullYear().toString(),
+                    title: doc.data().title,
+                    keywords: doc.data().keywords,
+                    slides: doc.data().presentation,
+                    abstract: doc.data().abstract,
+                };
+                
             });
         })
         .catch(function(error){

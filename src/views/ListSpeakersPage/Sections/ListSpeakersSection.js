@@ -123,9 +123,8 @@ export default function ListSpeakersSection(){
                     var talks_len = speakers[doc.id].talks.length;
 
                     // Si la unica platica del speaker no tiene video aun
-                    if(talks[speakers[doc.id].talks[0].toString()].video != null){
-                        speakers[doc.id].inList = true;
-                    }
+                    // Creo ya no sirve para nada inList porque ahora se ponen las platicas aunque no tengan video
+                    speakers[doc.id].inList = true;
 
                     for(var i=0; i<talks_len; i++){
                         // los ids de las platicas asociadas a un speaker son enteros en la base de datos
@@ -198,9 +197,6 @@ export default function ListSpeakersSection(){
                 <h5 style={{fontSize: '20px', fontStyle:'normal'}}>{speakersDic[speaker].surname} {speakersDic[speaker].name} {speakersDic[speaker].middle_initial} 
                 {speakersDic[speaker].talks.map(function(talkID) {
                     var talkID_aux = talkID.toString();
-                    if(talks[talkID_aux].video == null){
-                        return;
-                    }
                     return (
                         <>
                             {firstTalk ? firstTalk=false  : ', ' }
