@@ -16,7 +16,7 @@ import CardBody from "../../../components/Card/CardBody.js";
 import CardFooter from "../../../components/Card/CardFooter.js";
 
 import styles from "../../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
-//import image1 from "../../../assets/img/images/speakers/sp043.png";
+import image2 from "../../../assets/img/images/speakers/sp045.png";
 import image1 from "../../../assets/img/images/speakers/sp044.png";
 
 const useStyles = makeStyles(styles);
@@ -46,25 +46,22 @@ export default function NextTalksSection(){
 
     const [talks2, setTalks2] = useState([
         {
-            date: "February 19, 2021",
-            speaker: "Nina Otter",
-            title: "The magnitude of point-cloud data",
-            keywords: ["magnitude", "point-cloud data", "stability", "persistent homology"],
-            abstract: "<p>Magnitude is an isometric invariant of metric spaces that was introduced by Tom Leinster "
-            + "in 2010, and is currently the object of intense research, since it has been shown to encode many "
-            + "invariants of a metric space such as volume, dimension, and capacity.\n\n"
-            + '</p>'
-            + "<p>Magnitude homology is a homology theory for metric spaces that has been introduced by "
-            + "Hepworth-Willerton and Leinster-Shulman, and categorifies magnitude in a similar way as the singular "
-            + "homology of a topological space categorifies its Euler characteristic.\n\n"
-            + "</p>"
-            + "<p>In this talk I will first introduce magnitude and magnitude homology. I will then give an overview of "
-            + "existing results and current research in this area, explain how magnitude homology is related to "
-            + "persistent homology, and finally discuss new stability results for magnitude and how it can be used to "
-            + "study point-cloud data."
-            + "</p>"
-            + "<p>This talk is based on joint work in progress with Miguel O'Malley and Sara Kalisnik, as well as the "
-            + "<a href = https://arxiv.org/abs/1807.01540>preprint</a>.</p>",
+            date: "March 5, 2021",
+            speaker: "Daniel Peralta-Salas",
+            title: "Pseudo-Seifert surfaces and vortex reconnections in quantum fluids",
+            keywords: ["quantum vortices", "nodal lines", "Schrödinger equation", " Gross-Pitaievskii equation", "approximation theorems"],
+            abstract: "<p>The quantum vortices of a superfluid are described as nodal lines of a solution to the time-dependent "
+            +"Gross-Pitaevskii equation. Experiments in Lab and extensive numerical computations show that quantum "
+            +"vortices cross, each of them breaking into two parts and exchanging part of itself for part of the other. "
+            +"This phenomenon, known as quantum vortex reconnection, occurs even though the superfluid does not lose "
+            +"its smoothness. This usually leads to a change of topology of the quantum vortices. In this talk I will "
+            +"show that, given any initial and final congurations of quantum vortices (i.e. closed curves, possibly "
+            +"knotted and linked), and any way of transforming one into the other through a generic pseudo-Seifert "
+            +"surface embedded in spacetime, there is an initial condition whose associatedsolution realizes this "
+            +"specific vortex reconnection scenario. This allows us to track the vortex reconnection process at all "
+            +"times, both locally and globally. Key to prove this result is a new Runge-type approximation theorem "
+            +"for the linear Schrodinger equation.</p> "
+            +"<p>This is based on joint work with Alberto Enciso.</p>",
         },
     ]);
 
@@ -93,7 +90,7 @@ export default function NextTalksSection(){
                     ))}
                 </GridContainer>
             </GridItem>
-            {/*<GridItem xs={12} sm={12} md={5} className={classes.nextTalk}>
+            <GridItem xs={12} sm={12} md={5} className={classes.nextTalk}>
               <img src={image2} className={imageClasses}/>
             </GridItem>
             <GridItem xs={12} sm={12} md={7}>
@@ -108,7 +105,7 @@ export default function NextTalksSection(){
                         </>
                     ))}
                 </GridContainer>
-                    </GridItem>*/}
+                    </GridItem>
         </GridContainer>
     );
 }
