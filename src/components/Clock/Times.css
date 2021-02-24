@@ -11,6 +11,7 @@
   width: 280px;
   height: 280px;
   margin-top: 25px;
+  margin-bottom: 25px;
   display: flex;
   display: -webkit-flex;
   flex-direction: column;
