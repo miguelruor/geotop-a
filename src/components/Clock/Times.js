@@ -17,7 +17,7 @@ export default class Times extends Component {
       <div className="times">
         <div className="times-content" style={{ backgroundColor: this.props.color, borderColor: this.props.bordercolor }}>
           <label id="timer-label">{this.props.timeLabel+": "+formatTime(600)}</label>
-          <label id="timer-label">{"Local time:"}</label>
+          <label id="timer-label2">{"Your local time:"}</label>
           <span id="time-left">{/*this.props.timeLeftInMinutes*/}{formatTime(this.props.timeLeftInMinutes)}</span>
         </div>
       </div>

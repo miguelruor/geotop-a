@@ -8,10 +8,10 @@
 .times-content {
   display: inline-block;
   margin: 0 auto;
-  width: 280px;
-  height: 280px;
-  margin-top: 25px;
-  margin-bottom: 25px;
+  width: 200px;
+  height: 200px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
   display: -webkit-flex;
   flex-direction: column;
@@ -22,11 +22,16 @@
 }
 
 #timer-label {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 100%;
+  font-weight: 600;
+}
+
+#timer-label2{
+  font-size: 140%;
+  font-weight: 800;
 }
 
 #time-left {
-  font-size: 5rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 800;
 }
