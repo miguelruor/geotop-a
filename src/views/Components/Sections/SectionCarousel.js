@@ -46,7 +46,7 @@ export default function SectionCarousel() {
   //const classes = useStyles();
   
   const settings = {
-    dots: true,
+    //dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 1,

@@ -6,12 +6,22 @@ const workStyle = {
   },
   title: {
     ...title,
-    marginBottom: "50px",
-    margin: "10px",
+    marginBottom: "10%",
+    marginLeft: "2%",
+    marginRight: "2%",
     minHeight: "30px",
     textDecoration: "none",
     textAlign: "center"
   },
+  subtitle: {
+   ...title,
+   marginBottom: "10px",
+   margin: "10px",
+   minHeight: "30px",
+   textDecoration: "none",
+   textAlign: "left",
+   color: "#407294",
+ },
   description: {
     color: "black",
     textAlign: "left",
