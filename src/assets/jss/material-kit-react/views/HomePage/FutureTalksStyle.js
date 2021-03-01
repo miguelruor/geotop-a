@@ -6,8 +6,9 @@ const workStyle = {
   },
   title: {
     ...title,
-    marginBottom: "50px",
-    margin: "10px",
+    marginBottom: "10%",
+    marginLeft: "2%",
+    marginRight: "2%",
     minHeight: "30px",
     textDecoration: "none",
     textAlign: "center"

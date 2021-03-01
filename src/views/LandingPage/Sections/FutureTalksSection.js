@@ -29,7 +29,7 @@ export default function FutureTalks(){
         {
             date: "January 22",
             speaker: "Sergei Nechaev",
-            tittle: "Interdisciplinary Scientific Center Poncelet (CNRS UMI 2615) Moscow - Russia"
+            tittle: "Interdisciplinary Scientific Center Poncelet (CNRS UMI 2615) - Russia"
         },  
         {
             date: "February 5",
@@ -158,7 +158,7 @@ export default function FutureTalks(){
                      {/* Seccion Movil */}
                      <Hidden smUp>
                         <GridItem xs={12} sm={3} md={2}>
-                              <p className={classes.nextTalks}><b>{talk.speaker}</b>-{talk.date}</p>
+                              <p className={classes.nextTalks}><b>{talk.speaker}</b> - {talk.date}</p>
                         </GridItem>
                         <GridItem xs={12}>
                               <p className={classes.nextTalks}>{talk.tittle}</p>
@@ -207,7 +207,7 @@ export default function FutureTalks(){
                         {/* Seccion Movil */}
                         <Hidden smUp>
                            <GridItem xs={12} sm={3} md={2}>
-                                 <p className={classes.nextTalks}><b>{talk.speaker}</b>-{talk.date}</p>
+                                 <p className={classes.nextTalks}><b>{talk.speaker}</b> - {talk.date}</p>
                            </GridItem>
                            <GridItem xs={12}>
                                  <p className={classes.nextTalks}>{talk.tittle}</p>
