@@ -16,37 +16,26 @@ import CardBody from "../../../components/Card/CardBody.js";
 import CardFooter from "../../../components/Card/CardFooter.js";
 
 import styles from "../../../assets/jss/material-kit-react/views/landingPageSections/teamStyle.js";
-import image2 from "../../../assets/img/images/speakers/sp045.png";
-import image1 from "../../../assets/img/images/speakers/sp044.png";
+import image1 from "../../../assets/img/images/speakers/sp045.png";
+import image2 from "../../../assets/img/images/speakers/sp046.png";
 
 const useStyles = makeStyles(styles);
 
 export default function NextTalksSection(){
     
-    const [talks, setTalks] = useState([
+    const [talks2, setTalks2] = useState([
         {
-            date: "March 5, 2021",
-            speaker: "Davide Michieletto",
-            title: "Topologically Active Polymers and DNA",
-            keywords: ["DNA topology", "Microrheology", "Soft Matter", "Living Polymers"],
-            abstract: "<p>Polymer physics principles heavily rely on the assumption that polymers do not change "
-            + "topology (or architecture) in time. This is not the case for DNA, which is constantly "
-            + "topologically re-arranged within the cell nucleus. "
-            + "Inspired by this, I propose to study entangled systems of polymers which can selectively "
-            + "alter their topology and architecture in time and may expend energy to do so. I argue that "
-            + "solutions of these 'topologically active (living) polymers' can display unconventional "
-            + "viscoelastic behaviours and can be conveniently realised using solutions of DNA "
-            + "functionalised by certain families of proteins. </p>"
-            + "<p>In this talk I will present my first excursion into this field and present some recent "
-            + "results on the microrheology of entangled Lambda DNA undergoing digestion by restriction "
-            + "enzymes. Finally, I will discuss some wild conjectures and speculations about possible "
-            + "future directions.</p>",
+            date: "April 9, 2021",
+            speaker: "Stephen Childress",
+            title: "A toy model of the inertial range",
+            keywords: ["turbulence", "inertial range", "turbulent cascade"],
+            abstract: "<p>In this talk we develop a simple toy model of the inertial range of turbulent flow, based upon a cascade of vortical filaments. The filaments are taken to be helical, one turn of the helix playing the role of a turbulent eddy. A binary branching structure is proposed, involving the splitting of filaments at each step into pairs of daughter filaments with differing properties, in effect two distinct simultaneous cascades. Neither of the cascades of this bimodal structure, in isolation, has the Richardson exponent of 1/3. If cascades are assumed to be initiated continuously and throughout space we obtain a model of the inertial range of stationary turbulence. We impose the constraint associated with Kolmogorov's four-fifths law and then adjust the splitting to achieve good agreement with the observed structure exponents <i>zeta<sub>p</sub></i>. The presence of two simultaneous cascades is responsible for the nonlinear dependence of <i>zeta<sub>p</sub></i> upon <i>p</i>. We also consider the intial value problem and study the flow of energy to small scales.</p><p>This is joint work with Andrew Gilbert.</p>",
         },
     ]);
 
-    const [talks2, setTalks2] = useState([
+    const [talks, setTalks] = useState([
         {
-            date: "March 5, 2021",
+            date: "March 19, 2021",
             speaker: "Daniel Peralta-Salas",
             title: "Pseudo-Seifert surfaces and vortex reconnections in quantum fluids",
             keywords: ["quantum vortices", "nodal lines", "Schrödinger equation", " Gross-Pitaievskii equation", "approximation theorems"],
@@ -75,7 +64,7 @@ export default function NextTalksSection(){
     return(
         <GridContainer>
             <GridItem xs={12} sm={12} md={5} className={classes.nextTalk}>
-              <img src={image1} className={imageClasses}/>
+                <div style={{textAlign: "center"}}><img src={image1} className={imageClasses}/></div>
             </GridItem>
             <GridItem xs={12} sm={12} md={7}>
                 <GridContainer>
@@ -91,7 +80,8 @@ export default function NextTalksSection(){
                 </GridContainer>
             </GridItem>
             <GridItem xs={12} sm={12} md={5} className={classes.nextTalk}>
-              <img src={image2} className={imageClasses}/>
+              {//<div style={{textAlign: "center"}}><img src={image2} className={imageClasses}/></div>
+                }
             </GridItem>
             <GridItem xs={12} sm={12} md={7}>
                 <GridContainer>
