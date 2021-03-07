@@ -80,8 +80,7 @@ export default function NextTalksSection(){
                 </GridContainer>
             </GridItem>
             <GridItem xs={12} sm={12} md={5} className={classes.nextTalk}>
-              {//<div style={{textAlign: "center"}}><img src={image2} className={imageClasses}/></div>
-                }
+              <div style={{textAlign: "center"}}><img src={image2} className={imageClasses}/></div>
             </GridItem>
             <GridItem xs={12} sm={12} md={7}>
                 <GridContainer>
